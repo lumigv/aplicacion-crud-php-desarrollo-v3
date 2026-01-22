@@ -1,0 +1,43 @@
+<?php
+/*Incluye parámetros de conexión a la base de datos: 
+DB_HOST: Nombre o dirección del gestor de BD MariaDB
+DB_NAME: Nombre de la BD
+DB_USER: Usuario de la BD
+DB_PASSWORD: Contraseña del usuario de la BD
+*/
+include_once("config.php");
+?>
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">	
+	<title>CRUD PHP</title>
+</head>
+<body>
+<div>
+	<header>
+		<h1>APLICACION CRUD PHP</h1>
+	</header>
+
+	<main>
+	
+	<?php
+	session_start();
+
+	if (isset($_SESSION['employee_id'])) {
+		header("Location: home.php");
+		exit();
+	}
+	?>
+	<p><a href="login.php">Iniciar sesión (Empleado)</a></p>
+	<p><a href="add.php">Registrarse</a></p>
+
+	</main>
+	<footer>
+    	Created by the IES Miguel Herrero team &copy; 2026
+  	</footer>
+</div>
+</body>
+</html>
