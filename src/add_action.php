@@ -29,12 +29,15 @@ if(isset($_POST['inserta']))
 Se envía a través del body del HTTP Request. No aparecen en la URL como era el caso del otro método de envío de datos: GET
 Recuerda que   existen dos métodos con los que el navegador puede enviar información al servidor:
 1.- Método HTTP GET. Información se envía de forma visible. A través de la URL (header HTTP Request )
-En PHP los datos se administran con el array asociativo $_GET. En nuestro caso el dato del empleado se obiene a través de la clave: $_GET['idempleado']
+En PHP los datos se administran con el array asociativo $_GET. En nuestro caso el dato del empleado se obiene a través de la clave: $_GET['identificador']
 2.- Método HTTP POST. Información se envía de forma no visible. A través del cuerpo del HTTP Request 
 PHP proporciona el array asociativo $_POST para acceder a la información enviada.
 */
 
+	$email = $mysqli->real_escape_string($_POST['email']);
+	$username = $mysqli->real_escape_string($_POST['username']);
 	$name = $mysqli->real_escape_string($_POST['name']);
+	$password = $mysqli->real_escape_string($_POST['password']);
 	$surname = $mysqli->real_escape_string($_POST['surname']);
 	$age = $mysqli->real_escape_string($_POST['age']);
 	$job = $mysqli->real_escape_string($_POST['job']);
@@ -47,8 +50,17 @@ Escapado con mysqli_real_escape_string(): Se convierte en "O\'Reilly", evitando 
 */
 
 //Se comprueba si existen campos del formulario vacíos
-	if(empty($name) || empty($surname) || empty($age) || empty($job) ) 
+	if(empty($email) || empty($username) || empty($password) || empty($name) || empty($surname) || empty($age) || empty($job) ) 
 	{
+		if(empty($email)) {
+			echo "<div>Campo correo electrónico vacío.</div>";
+		}
+		if(empty($username)) {
+			echo "<div>Campo nombre de usuario vacío.</div>";
+		}
+		if(empty($password)) {
+			echo "<div>Campo contraseña vacío.</div>";
+		}
 		if(empty($name)) {
 			echo "<div>Campo nombre vacío.</div>";
 		}
@@ -72,7 +84,7 @@ Escapado con mysqli_real_escape_string(): Se convierte en "O\'Reilly", evitando 
 	else //Sino existen campos de formulario vacíos se procede al alta del nuevo registro
 	{
 //Se ejecuta una sentencia SQL. Inserta (da de alta) el nuevo registro: insert.
-		$result = $mysqli->query("INSERT INTO empleados (nombre, apellido, edad, puesto) VALUES ('$name', '$surname', '$age', '$job')");	
+		$result = $mysqli->query("INSERT INTO empleados (correo, emp_id, contrasena, nombre, apellido, edad, puesto) VALUES ('$email', '$username', '$password', '$name', '$surname', '$age', '$job')");	
 		//Se cierra la conexión
 		$mysqli->close();
 		echo "<div>Registro añadido correctamente...</div>";

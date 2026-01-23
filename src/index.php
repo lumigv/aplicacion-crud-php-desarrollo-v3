@@ -26,13 +26,13 @@ include_once("config.php");
 	<?php
 	session_start();
 
-	if (isset($_SESSION['employee_id'])) {
+	if (isset($_SESSION['username'])) {
 		header("Location: home.php");
 		exit();
 	}
 	?>
-	<p><a href="login.php">Iniciar sesión (Empleado)</a></p>
-	<p><a href="add.php">Registrarse</a></p>
+	<p><a href="login.php">Iniciar sesión</a></p>
+	<p><a href="add.php">Registrarse en CRUD</a></p>
 
 	</main>
 	<footer>

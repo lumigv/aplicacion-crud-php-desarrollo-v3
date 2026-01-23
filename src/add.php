@@ -18,6 +18,18 @@ La página: add.php se encargará de proceder a la inserción del registro en la
 
 	<form action="add_action.php" method="post">
 		<div>
+			<label for="email">Correo</label>
+			<input type="email" name="email" id="email" placeholder="correo electrónico" required>
+		</div>
+		<div>
+			<label for="username">Usuario</label>
+			<input type="text" name="username" id="username" placeholder="nombre usuario" required>
+		</div>
+		<div>
+			<label for="name">Contraseña</label>
+			<input type="password" name="password" id="password" placeholder="contraseña" required>
+		</div>
+		<div>
 			<label for="name">Nombre</label>
 			<input type="text" name="name" id="name" placeholder="nombre" required>
 		</div>
@@ -36,19 +48,18 @@ La página: add.php se encargará de proceder a la inserción del registro en la
 			<label for="job">Puesto</label>
 			<select name="job" id="job" placeholder="puesto" required>
 				<option value="" disabled selected>Seleccione un puesto</option>
-				<option value="administrativo">Administrativo</option>
-				<option value="contable">Contable</option>
-				<option value="dependiente">Dependiente</option>
-				<option value="empleado">Empleado</option>
-				<option value="gerente">Gerente</option>
-				<option value="repartidor">Repartidor</option>
+				<option value="administrativo">administrativo</option>
+				<option value="contable">contable</option>
+				<option value="dependiente">dependiente</option>
+				<option value="empleado">empleado</option>
+				<option value="gerente">gerente</option>
+				<option value="repartidor">repartidor</option>
 			</select>	
 		</div>
 
 		<div>
 			<button type="submit" name="inserta" value="si">Aceptar</button>
 			<button type="button" onclick="location.href='index.php'">Cancelar</button>
-			<button type="reset">Limpiar</button>
 		</div>
 	</form>
 	

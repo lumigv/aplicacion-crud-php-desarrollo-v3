@@ -22,21 +22,24 @@ include_once("config.php");
 	<?php
 
 
-	/*Obtiene el id del registro del empleado a modificar, idempleado, a partir de su URL. Este tipo de datos se accede utilizando el método: GET*/
+	/*Obtiene el id del registro del empleado a modificar, identificador, a partir de su URL. Este tipo de datos se accede utilizando el método: GET*/
 
-	//Recoge el id del empleado a modificar a través de la clave idempleado del array asociativo $_GET y lo almacena en la variable idempleado
-	$idempleado = $_GET['idempleado'];
+	//Recoge el id del empleado a modificar a través de la clave identificador del array asociativo $_GET y lo almacena en la variable identificador
+	$identificador = $_GET['identificador'];
 
 	//Con mysqli_real_scape_string protege caracteres especiales en una cadena para ser usada en una sentencia SQL.
-	$idempleado = $mysqli->real_escape_string($idempleado);
+	$identificador = $mysqli->real_escape_string($identificador);
 
 
 	//Se selecciona el registro a modificar: select
-	$resultado = $mysqli->query("SELECT apellido, nombre, edad, puesto FROM empleados WHERE id = $idempleado");
+	$resultado = $mysqli->query("SELECT emp_id, contrasena, correo, apellido, nombre, edad, puesto FROM empleados WHERE id = $identificador");
 
 	//Se extrae el registro y lo guarda en el array $fila
 	//Nota: También se puede utilizar el método fetch_assoc de la siguiente manera: $fila = $resultado->fetch_assoc();
 	$fila = $resultado->fetch_array();
+	$username = $fila['emp_id'];
+	$password = $fila['contrasena'];
+	$email = $fila['correo'];
 	$surname = $fila['apellido'];
 	$name = $fila['nombre'];
 	$age = $fila['edad'];
@@ -50,6 +53,18 @@ include_once("config.php");
 -->
 
 	<form action="edit_action.php" method="post">
+		<div>
+			<label for="email">Correo</label>
+			<input type="email" name="email" id="email" value="<?php echo $email;?>" required>
+		</div>
+		<div>
+			<label for="username">Usuario</label>
+			<input type="text" name="username" id="username" value="<?php echo $username;?>" required>
+		</div>
+		<div>
+			<label for="name">Contraseña</label>
+			<input type="password" name="password" id="password" value="<?php echo $password;?>" required>
+		</div>	
 		<div>
 			<label for="name">Nombre</label>
 			<input type="text" name="name" id="name" value="<?php echo $name;?>" required>
@@ -69,17 +84,17 @@ include_once("config.php");
 			<label for="job">Puesto</label>
 			<select name="job" id="job" placeholder="puesto">
 				<option value="<?php echo $job;?>" selected><?php echo $job;?></option>
-				<option value="administrativo">Administrativo</option>
-				<option value="contable">Contable</option>
-				<option value="dependiente">Dependiente</option>
-				<option value="empleado">Empleado</option>
-				<option value="gerente">Gerente</option>
-				<option value="repartidor">Repartidor</option>
+				<option value="administrativo">administrativo</option>
+				<option value="contable">contable</option>
+				<option value="dependiente">dependiente</option>
+				<option value="empleado">empleado</option>
+				<option value="gerente">gerente</option>
+				<option value="repartidor">repartidor</option>
 			</select>	
 		</div>
 
 		<div >
-			<input type="hidden" name="idempleado" value=<?php echo $idempleado;?>>
+			<input type="hidden" name="identificador" value=<?php echo $identificador;?>>
 			<button type="submit" name="modifica" value="si">Aceptar</button>
 			<button type="button" onclick="location.href='index.php'">Cancelar</button>
 			
@@ -91,7 +106,7 @@ include_once("config.php");
 	</main>	
 	<footer>
 		<p><a href="index.php">Volver</a></p>	
-		Created by the IES Miguel Herrero team &copy; 2024
+		Created by the IES Miguel Herrero team &copy; 2026
   	</footer>
 </div>
 </body>

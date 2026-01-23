@@ -35,16 +35,19 @@ include_once("config.php");
   <?php endif; ?>
 
   <form method="post" action="login_action.php">
-    Correo electrónico<br>
-    <input type="email" name="email" placeholder="Correo electrónico" required><br>
-    Contraseña<br>
-    <input type="password" name="contrasena" placeholder="Contraseña" required><br>
+    <div>
+			<label for="email">Email</label>
+			<input type="email" name="email" id="email" placeholder="correo electrónico" required>
+		</div>
+		<div>
+			<label for="password">Contraseña</label>
+			<input type="password" name="password" id="password" placeholder="contraseña" required>
+		</div>
     <button type="submit" name="inicia" value="si">Iniciar sesión</button>
   </form>
-
+  
   <p><a href="add.php">Crear una cuenta</a></p>
   <p><a href="index.php">Volver</a></p>
-
 
 	</main>
 	<footer>

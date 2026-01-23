@@ -1,6 +1,7 @@
 <?php
 //Incluye fichero con parámetros de conexión a la base de datos
 include_once("config.php");
+session_start();
 ?>
 
 <!DOCTYPE html>
@@ -17,21 +18,27 @@ include_once("config.php");
 	</header>
 	<main>				
 	<?php
-	session_start();
-	if(isset($_POST['inicia'])) {
+	echo $_POST['inicia'].'<br>';
+	if (isset($_POST['inicia'])) {
+		echo $_POST['email'].'<br>';
 		$email = $mysqli->real_escape_string($_POST['email']);
-		$password = $mysqli->real_escape_string($_POST['contrasena']);
+		echo $_POST['password'].'<br>';
+		$password = $mysqli->real_escape_string($_POST['password']);
 
 		if (empty($email) || empty($password)) {
-			$_SESSION['login_error'] = ' Completa email y contraseña';
+			$_SESSION['login_error'] = 'Completa email y contraseña';
+			echo 'Completa email y contraseña<br>';
 			header("Location: login.php");
 			exit();
 		} //fin si
 		else //Se comprueba si los datos son correctos 
 		{
-			$resultado = $mysqli->query("SELECT id, emp_id, contrasena, email, apellido, nombre FROM empleados WHERE email = '$email'");
+			echo 'Vamos a hacer el query<br>';
+			$resultado = $mysqli->query("SELECT emp_id, nombre, apellido, correo, contrasena FROM empleados WHERE correo = '$email'");
+			echo 'Hemos hecho la consulta query<br>';
 			if ($resultado->num_rows === 0) {
 				$_SESSION['login_error'] = 'Usuario incorrecto';
+				echo 'Usuario incorrecto<br>';
 				header("Location: login.php");
 				exit();
 			} //fin si
@@ -40,16 +47,22 @@ include_once("config.php");
 				$fila = $resultado->fetch_array();
 				if ($password === $fila['contrasena']) {
 					//Datos correctos
-					$_SESSION['id'] = $fila['id'];
-					$_SESSION['emp_id'] = $fila['emp_id'];
-					$_SESSION['nombre'] = $fila['nombre'];
-					$_SESSION['apellido'] = $fila['apellido'];
+					echo $fila['emp_id'].'<br>';
+					echo $fila['nombre'].'<br>';
+					echo $fila['apellido'].'<br>';
+					echo $fila['correo'].'<br>';
+					$_SESSION['username'] = $fila['emp_id'];
+					$_SESSION['name'] = $fila['nombre'];
+					$_SESSION['surname'] = $fila['apellido'];
+					$_SESSION['email'] = $fila['correo'];
+					echo 'Usuario y contraseña correcta<br>';
 					header("Location: home.php");
 					exit();
 				} //fin si
 				else {
 					//Contraseña incorrecta
 					$_SESSION['login_error'] = 'Contraseña incorrecta';
+					echo 'Contraseña incorrecta<br>';
 					header("Location: login.php");
 					exit();
 				} //fin sino
@@ -58,6 +71,7 @@ include_once("config.php");
 		//Se cierra la conexión de base de datos
 		$mysqli->close();
 	} //fin si
+	echo 'LLega hasta el final';
 	?>
 	</main>	
 </div>
