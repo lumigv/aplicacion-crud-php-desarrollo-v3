@@ -8,7 +8,7 @@
 <body>
 <div>
 	<header>
-		<h1>APLICACION CRUD PHP</h1>
+		<h1>APLICACION CRUD VANILLA PHP</h1>
 	</header>
 
 	<main>
