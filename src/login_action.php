@@ -45,7 +45,14 @@ session_start();
 			else
 			{
 				$fila = $resultado->fetch_array();
-				if ($password === $fila['contrasena']) {
+				if ($password !== $fila['contrasena']) {
+					//Contraseña incorrecta
+					$_SESSION['login_error'] = 'Contraseña incorrecta';
+					echo 'Contraseña incorrecta<br>';
+					header("Location: login.php");
+					exit();
+				} //fin si
+				else {
 					//Datos correctos
 					echo $fila['emp_id'].'<br>';
 					echo $fila['nombre'].'<br>';
@@ -57,13 +64,6 @@ session_start();
 					$_SESSION['email'] = $fila['correo'];
 					echo 'Usuario y contraseña correcta<br>';
 					header("Location: home.php");
-					exit();
-				} //fin si
-				else {
-					//Contraseña incorrecta
-					$_SESSION['login_error'] = 'Contraseña incorrecta';
-					echo 'Contraseña incorrecta<br>';
-					header("Location: login.php");
 					exit();
 				} //fin sino
 			} //fin sino

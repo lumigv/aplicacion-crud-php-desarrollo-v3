@@ -41,6 +41,10 @@ PHP proporciona el array asociativo $_POST para acceder a la información enviad
 	$surname = $mysqli->real_escape_string($_POST['surname']);
 	$age = $mysqli->real_escape_string($_POST['age']);
 	$job = $mysqli->real_escape_string($_POST['job']);
+	if (empty($age)) {
+    $age = "NULL";} 
+	else {
+    $age = intval($age);}
 
 /*Con mysqli_real_scape_string protege caracteres especiales en una cadena para ser usada en una sentencia SQL.
 Esta función es usada para crear una cadena SQL legal que se puede usar en una sentencia SQL. 
@@ -50,7 +54,7 @@ Escapado con mysqli_real_escape_string(): Se convierte en "O\'Reilly", evitando 
 */	
 
 //Se comprueba si existen campos del formulario vacíos
-	if(empty($email) || empty($username) || empty($password) || empty($name) || empty($surname) || empty($age) || empty($job) ) 
+	if(empty($email) || empty($username) || empty($password)) 
 	{
 		if(empty($email)) {
 			echo "<div>Campo email vacío.</div>";
@@ -61,29 +65,16 @@ Escapado con mysqli_real_escape_string(): Se convierte en "O\'Reilly", evitando 
 		if(empty($password)) {
 			echo "<div>Campo contraseña vacío.</div>";
 		}
-		if(empty($name)) {
-			echo "<font color='red'>Campo nombre vacío.</font><br/>";
-		}
-
-		if(empty($surname)) {
-			echo "<font color='red'>Campo apellido vacío.</font><br/>";
-		}
-
-		if(empty($age)) {
-			echo "<font color='red'>Campo edad vacío.</font><br/>";
-		}
-
-		if(empty($job)) {
-			echo "<font color='red'>Campo puesto vacío.</font><br/>";
-		}
+		$mysqli->close();
+		echo "<a href='javascript:self.history.back();'>Volver atras</a>";
 	} //fin si
 	else //Se realiza la modificación de un registro de la BD. 
 	{
 		//Se actualiza el registro a modificar: update
-		$mysqli->query("UPDATE empleados SET emp_id = '$username', contrasena = '$password', correo = '$email', nombre = '$name', apellido = '$surname',  edad = '$age', puesto = '$job' WHERE id = $identificador");
+		$mysqli->query("UPDATE empleados SET emp_id = '$username', contrasena = '$password', correo = '$email', nombre = '$name', apellido = '$surname',  edad = $age, puesto = '$job' WHERE id = $identificador");
 		$mysqli->close();
         echo "<div>Registro editado correctamente...</div>";
-		echo "<a href='index.php'>Ver resultado</a>";
+		echo "<a href='home.php'>Ver resultado</a>";
         //Se redirige a la página principal: index.php
         //header("Location: index.php");
 	}// fin sino

@@ -6,9 +6,7 @@ DB_USER: Usuario de la BD
 DB_PASSWORD: Contraseña del usuario de la BD
 */
 include_once("config.php");
-?>
 
-<?php
 session_start();
 
 if (!isset($_SESSION['username'])) {
@@ -43,6 +41,7 @@ $email = $_SESSION['email'] ?? '';
 	<table border="1">
 	<thead>
 		<tr>
+			<th>Usuario</th>
 			<th>Nombre</th>
 			<th>Apellido</th>
 			<th>Edad</th>
@@ -100,6 +99,7 @@ A medida que avanza se va consturyendo cada fila de la tabla HTML con todos los 
 
 	while($fila = $resultado->fetch_array()) {
 		echo "<tr>\n";
+		echo "<td>".$fila['emp_id']."</td>\n";
 		echo "<td>".$fila['nombre']."</td>\n";
 		echo "<td>".$fila['apellido']."</td>\n";
 		echo "<td>".$fila['edad']."</td>\n";
@@ -119,8 +119,7 @@ Este forma de pasar el dato se conoce como: método GET*/
 	</table>
 	</main>
 	<footer>
-		<p><a href="index.php">Volver</a></p>	
-		<p><a href="logout.php">Cerrar sesión</a></p>
+		<p><a href="logout.php">Cerrar sesión (Sign out) <?php echo $_SESSION['username']; ?></a></p>
     	Created by the IES Miguel Herrero team &copy; 2026
   	</footer>
 </div>

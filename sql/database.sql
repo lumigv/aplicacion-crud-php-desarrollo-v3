@@ -3,12 +3,12 @@ CREATE TABLE empleados (
   emp_id VARCHAR(50) NOT NULL UNIQUE,
   contrasena VARCHAR(255) NOT NULL,
   correo VARCHAR(150) NOT NULL UNIQUE,
-  apellido VARCHAR(100) NOT NULL,
-  nombre VARCHAR(100) NOT NULL,
-  edad INT UNSIGNED NOT NULL,
-  puesto ENUM('empleado', 'administrativo', 'contable', 'dependiente', 'gerente', 'repartidor') NOT NULL DEFAULT 'empleado',
+  apellido VARCHAR(100),
+  nombre VARCHAR(100),
+  edad INT UNSIGNED,
+  puesto ENUM('usuario', 'empleado', 'administrativo', 'contable', 'dependiente', 'gerente', 'repartidor') NOT NULL DEFAULT 'usuario',
   creacion TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 
 INSERT INTO empleados (emp_id, contrasena, correo, apellido, nombre, edad, puesto) VALUES('javier', 'usuario@1','javier@gmail.com', 'Coloma', 'Javier', 25, 'contable');

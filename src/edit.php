@@ -1,7 +1,15 @@
 <?php
 //Incluye fichero con parámetros de conexión a la base de datos
 include_once("config.php");
+
+session_start();
+
+if (!isset($_SESSION['username'])) {
+    header("Location: login.php");
+    exit();
+}
 ?>
+
 
 <!DOCTYPE html>
 <html>
@@ -67,17 +75,17 @@ include_once("config.php");
 		</div>	
 		<div>
 			<label for="name">Nombre</label>
-			<input type="text" name="name" id="name" value="<?php echo $name;?>" required>
+			<input type="text" name="name" id="name" value="<?php echo $name;?>" >
 		</div>
 
 		<div>
 			<label for="surname">Apellido</label>
-			<input type="text" name="surname" id="surname" value="<?php echo $surname;?>" required>
+			<input type="text" name="surname" id="surname" value="<?php echo $surname;?>">
 		</div>
 
 		<div>
 			<label for="age">Edad</label>
-			<input type="number" name="age" id="age" value="<?php echo $age;?>" required>
+			<input type="number" name="age" id="age" value="<?php echo $age;?>">
 		</div>
 
 		<div>
@@ -90,6 +98,7 @@ include_once("config.php");
 				<option value="empleado">empleado</option>
 				<option value="gerente">gerente</option>
 				<option value="repartidor">repartidor</option>
+				<option value="repartidor">usuario</option>
 			</select>	
 		</div>
 
@@ -106,6 +115,7 @@ include_once("config.php");
 	</main>	
 	<footer>
 		<p><a href="index.php">Volver</a></p>	
+		<p><a href="logout.php">Cerrar sesión (Sign out) <?php echo $_SESSION['username']; ?></a></p>
 		Created by the IES Miguel Herrero team &copy; 2026
   	</footer>
 </div>

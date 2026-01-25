@@ -31,8 +31,8 @@ include_once("config.php");
 		exit();
 	}
 	?>
-	<p><a href="login.php">Iniciar sesión</a></p>
-	<p><a href="add.php">Registrarse en CRUD</a></p>
+	<p><a href="login.php">Iniciar sesión (Sign in)</a></p>
+	<p><a href="registro.php">Registrarse (Sign up)</a></p>
 
 	</main>
 	<footer>

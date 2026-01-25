@@ -1,3 +1,11 @@
+<?php
+session_start();
+
+if (!isset($_SESSION['username'])) {
+    header("Location: login.php");
+    exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -31,22 +39,22 @@ La página: add.php se encargará de proceder a la inserción del registro en la
 		</div>
 		<div>
 			<label for="name">Nombre</label>
-			<input type="text" name="name" id="name" placeholder="nombre" required>
+			<input type="text" name="name" id="name" placeholder="nombre">
 		</div>
 
 		<div>
 			<label for="surname">Apellido</label>
-			<input type="text" name="surname" id="surname" placeholder="apellido" required>
+			<input type="text" name="surname" id="surname" placeholder="apellido">
 		</div>
 
 		<div>
 			<label for="age">Edad</label>
-			<input type="number" name="age" id="age" placeholder="edad" required>
+			<input type="number" name="age" id="age" placeholder="edad">
 		</div>
 
 		<div>
 			<label for="job">Puesto</label>
-			<select name="job" id="job" placeholder="puesto" required>
+			<select name="job" id="job" placeholder="puesto">
 				<option value="" disabled selected>Seleccione un puesto</option>
 				<option value="administrativo">administrativo</option>
 				<option value="contable">contable</option>
@@ -54,6 +62,7 @@ La página: add.php se encargará de proceder a la inserción del registro en la
 				<option value="empleado">empleado</option>
 				<option value="gerente">gerente</option>
 				<option value="repartidor">repartidor</option>
+				<option value="repartidor">usuario</option>
 			</select>	
 		</div>
 
@@ -65,8 +74,9 @@ La página: add.php se encargará de proceder a la inserción del registro en la
 	
 	</main>	
 	<footer>
-	<p><a href="index.php">Volver</a></p>	
-	Created by the IES Miguel Herrero team &copy; 2026
+		<p><a href="index.php">Volver</a></p>	
+		<p><a href="logout.php">Cerrar sesión (Sign out) <?php echo $_SESSION['username']; ?></a></p>
+		Created by the IES Miguel Herrero team &copy; 2026
   	</footer>
 </div>
 </body>

@@ -46,7 +46,6 @@ include_once("config.php");
     <button type="submit" name="inicia" value="si">Iniciar sesión</button>
   </form>
   
-  <p><a href="add.php">Crear una cuenta</a></p>
   <p><a href="index.php">Volver</a></p>
 
 	</main>
