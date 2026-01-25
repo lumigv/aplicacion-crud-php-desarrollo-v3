@@ -55,8 +55,9 @@ $email = $_SESSION['email'] ?? '';
 /*Se realiza una consulta de selección la tabla empleados ordenados y almacena todos los registros en una estructura especial PARECIDA a una "tabla" llamada $resultado.
 Cada fila y cada columna de la tabla se corresponde con un registro y campo de la tabla EMPLEADOS.
 */
-
-$resultado = $mysqli->query("SELECT * FROM empleados ORDER BY apellido, nombre");
+$sql="SELECT * FROM empleados ORDER BY apellido, nombre";
+//echo $sql.'<br>';
+$resultado = $mysqli->query($sql);
 
 //Cierra la conexión de la BD
 $mysqli->close();
@@ -99,7 +100,7 @@ A medida que avanza se va consturyendo cada fila de la tabla HTML con todos los 
 
 	while($fila = $resultado->fetch_array()) {
 		echo "<tr>\n";
-		echo "<td>".$fila['emp_id']."</td>\n";
+		echo "<td>".$fila['nombre_usuario']."</td>\n";
 		echo "<td>".$fila['nombre']."</td>\n";
 		echo "<td>".$fila['apellido']."</td>\n";
 		echo "<td>".$fila['edad']."</td>\n";

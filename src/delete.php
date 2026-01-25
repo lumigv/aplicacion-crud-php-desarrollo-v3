@@ -33,18 +33,17 @@ $identificador = $_GET['identificador'];
 $identificador = $mysqli->real_escape_string($identificador);
 
 //Se realiza el borrado del registro: delete.
-$result = $mysqli->query("DELETE FROM empleados WHERE id = $identificador");
-
+$sql="DELETE FROM empleados WHERE id = $identificador";
+//echo 'SQL: ' . $sql . '<br>';
+$result = $mysqli->query($sql);
 //Se cierra la conexión de base de datos previamente abierta
 $mysqli->close();
 echo "<div>Registro borrado correctamente...</div>";
-echo "<a href='index.php'>Ver resultado</a>";
-//Se redirige a la página principal: index.php
-//header("Location:index.php");
+echo "<a href='home.php'>Ver resultado</a>";
+//Se redirige a la página principal: home.php
+//header("Location:home.php");
 ?>
-
-    <!--<div>Registro borrado correctamente</div>
-	<a href='index.php'>Ver resultado</a>-->
+ 
     </main>
 </div>
 </body>

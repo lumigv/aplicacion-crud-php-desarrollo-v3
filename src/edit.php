@@ -40,12 +40,14 @@ if (!isset($_SESSION['username'])) {
 
 
 	//Se selecciona el registro a modificar: select
-	$resultado = $mysqli->query("SELECT emp_id, contrasena, correo, apellido, nombre, edad, puesto FROM empleados WHERE id = $identificador");
+	$sql="SELECT nombre_usuario, contrasena, correo, apellido, nombre, edad, puesto FROM empleados WHERE id = $identificador";
+	//echo 'SQL: ' . $sql . '<br>';
+	$resultado = $mysqli->query($sql);
 
 	//Se extrae el registro y lo guarda en el array $fila
 	//Nota: También se puede utilizar el método fetch_assoc de la siguiente manera: $fila = $resultado->fetch_assoc();
 	$fila = $resultado->fetch_array();
-	$username = $fila['emp_id'];
+	$username = $fila['nombre_usuario'];
 	$password = $fila['contrasena'];
 	$email = $fila['correo'];
 	$surname = $fila['apellido'];
@@ -63,11 +65,11 @@ if (!isset($_SESSION['username'])) {
 	<form action="edit_action.php" method="post">
 		<div>
 			<label for="email">Correo</label>
-			<input type="email" name="email" id="email" value="<?php echo $email;?>" required>
+			<input type="email" name="email" id="email" value="<?php echo $email;?>" readonly>
 		</div>
 		<div>
 			<label for="username">Usuario</label>
-			<input type="text" name="username" id="username" value="<?php echo $username;?>" required>
+			<input type="text" name="username" id="username" value="<?php echo $username;?>" readonly>
 		</div>
 		<div>
 			<label for="name">Contraseña</label>

@@ -19,6 +19,7 @@ include_once("config.php");
 
 <?php
 
+//echo $_POST['inserta'].'<br>';
 if(isset($_POST['inserta'])) 
 {
 	$email = $mysqli->real_escape_string($_POST['email']);
@@ -43,11 +44,10 @@ if(isset($_POST['inserta']))
 	else //Sino existen campos de formulario vacíos se procede al alta del nuevo registro
 	{
 //Se ejecuta una sentencia SQL. Inserta (da de alta) el nuevo registro: insert.
-		echo 'Vamos a insertar el registro<br>';
-		echo 'Email: ' . $email . '<br>';
-		echo 'Usuario: ' . $username . '<br>';
-		echo 'Contraseña: ' . $password . '<br>';
-		$result = $mysqli->query("INSERT INTO empleados (correo, emp_id, contrasena) VALUES ('$email', '$username', '$password')");	
+		//echo 'Email: ' . $email . '<br>';
+		//echo 'Usuario: ' . $username . '<br>';
+		//echo 'Contraseña: ' . $password . '<br>';
+		$result = $mysqli->query("INSERT INTO empleados (correo, nombre_usuario, contrasena) VALUES ('$email', '$username', '$password')");	
 		//Se cierra la conexión
 		$mysqli->close();
 		//echo "<div>Registro añadido correctamente...</div>";

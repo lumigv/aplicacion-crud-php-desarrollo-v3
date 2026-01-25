@@ -23,6 +23,7 @@ Para ello se comprueba la variable de formulario: "modifica" enviada al pulsar e
 Los datos del formulario se acceden por el método: POST
 */
 
+//echo $_POST['modifica'].'<br>';
 if(isset($_POST['modifica'])) {
 /*Se obtienen los datos del empleado (id, nombre, apellido, edad y puesto) a partir del formulario de edición (identificador, name, surname, age y job)  por el método POST.
 Se envía a través del body del HTTP Request. No aparecen en la URL como era el caso del otro método de envío de datos: GET
@@ -71,7 +72,9 @@ Escapado con mysqli_real_escape_string(): Se convierte en "O\'Reilly", evitando 
 	else //Se realiza la modificación de un registro de la BD. 
 	{
 		//Se actualiza el registro a modificar: update
-		$mysqli->query("UPDATE empleados SET emp_id = '$username', contrasena = '$password', correo = '$email', nombre = '$name', apellido = '$surname',  edad = $age, puesto = '$job' WHERE id = $identificador");
+		$sql="UPDATE empleados SET nombre_usuario = '$username', contrasena = '$password', correo = '$email', nombre = '$name', apellido = '$surname',  edad = $age, puesto = '$job' WHERE id = $identificador";
+		//echo 'SQL: ' . $sql . '<br>';
+		$mysqli->query($sql);
 		$mysqli->close();
         echo "<div>Registro editado correctamente...</div>";
 		echo "<a href='home.php'>Ver resultado</a>";
@@ -81,8 +84,7 @@ Escapado con mysqli_real_escape_string(): Se convierte en "O\'Reilly", evitando 
 }//fin si
 ?>
 
-    <!--<div>Registro editado correctamente</div>
-	<a href='index.php'>Ver resultado</a>-->
+    
 	</main>	
 </div>
 </body>
