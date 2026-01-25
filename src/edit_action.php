@@ -76,10 +76,10 @@ Escapado con mysqli_real_escape_string(): Se convierte en "O\'Reilly", evitando 
 		//echo 'SQL: ' . $sql . '<br>';
 		$mysqli->query($sql);
 		$mysqli->close();
-        echo "<div>Registro editado correctamente...</div>";
+        echo "<div>Empleado editado correctamente...</div>";
 		echo "<a href='home.php'>Ver resultado</a>";
-        //Se redirige a la página principal: index.php
-        //header("Location: index.php");
+        //Se redirige a la página principal: home.php
+        //header("Location: home.php");
 	}// fin sino
 }//fin si
 ?>

@@ -25,7 +25,7 @@ include_once("config.php");
 	
 	<?php
 	session_start();
-
+	//Si el usuario ya ha iniciado sesión se le redirige a la página home.php
 	if (isset($_SESSION['username'])) {
 		header("Location: home.php");
 		exit();

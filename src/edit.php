@@ -59,8 +59,7 @@ if (!isset($_SESSION['username'])) {
 	$mysqli->close();
 	?>
 
-<!--FORMULARIO DE EDICIÓN. Al hacer click en el botón Guardar, llama a la página (form action="edit_action.php"): edit_action.php
--->
+<!--FORMULARIO DE EDICIÓN. Al hacer click en el botón Guardar, llama a la página (form action="edit_action.php"): edit_action.php-->
 
 	<form action="edit_action.php" method="post">
 		<div>
@@ -107,7 +106,7 @@ if (!isset($_SESSION['username'])) {
 		<div >
 			<input type="hidden" name="identificador" value=<?php echo $identificador;?>>
 			<button type="submit" name="modifica" value="si">Aceptar</button>
-			<button type="button" onclick="location.href='index.php'">Cancelar</button>
+			<button type="button" onclick="location.href='home.php'">Cancelar</button>
 			
 
 			
@@ -116,7 +115,7 @@ if (!isset($_SESSION['username'])) {
 	</form>
 	</main>	
 	<footer>
-		<p><a href="index.php">Volver</a></p>	
+		<p><a href="home.php">Volver</a></p>	
 		<p><a href="logout.php">Cerrar sesión (Sign out) <?php echo $_SESSION['username']; ?></a></p>
 		Created by the IES Miguel Herrero team &copy; 2026
   	</footer>

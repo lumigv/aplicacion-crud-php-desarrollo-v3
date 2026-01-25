@@ -26,9 +26,12 @@ Los datos del formulario se acceden por el método: POST
 //echo $_POST['inserta'].'<br>';
 if(isset($_POST['inserta'])) 
 {
-/*Se obtienen los datos del empleado (nombre, apellido, edad y puesto) a partir del formulario de alta (name, surname, age y job)  por el método POST.
-Se envía a través del body del HTTP Request. No aparecen en la URL como era el caso del otro método de envío de datos: GET
+/*Se obtienen los datos del usuario/empleado (nombre_usuario, correo, contraseña, nombre, apellido, edad y puesto) a partir del formulario de alta (username, email, password, name, surname, age y job)  por el método POST.
+
+Se envía a través del body del mensaje HTTP Request. No aparecen en la URL como era el caso del otro método de envío de datos: GET
+
 Recuerda que   existen dos métodos con los que el navegador puede enviar información al servidor:
+
 1.- Método HTTP GET. Información se envía de forma visible. A través de la URL (header HTTP Request )
 En PHP los datos se administran con el array asociativo $_GET. En nuestro caso el dato del empleado se obiene a través de la clave: $_GET['identificador']
 2.- Método HTTP POST. Información se envía de forma no visible. A través del cuerpo del HTTP Request 
@@ -54,7 +57,7 @@ Ejemplo: Entrada sin escapar: "O'Reilly" contiene una comilla simple (').
 Escapado con mysqli_real_escape_string(): Se convierte en "O\'Reilly", evitando que la comilla se interprete como el fin de una cadena en SQL.
 */
 
-//Se comprueba si existen campos del formulario vacíos
+//Se comprueba si algunos campos del formulario están vacíos. Es decir no tienen ningún valor útil
 	if(empty($email) || empty($username) || empty($password) ) 
 	{
 		if(empty($email)) {
@@ -73,13 +76,13 @@ Escapado con mysqli_real_escape_string(): Se convierte en "O\'Reilly", evitando 
 	} //fin si
 	else //Sino existen campos de formulario vacíos se procede al alta del nuevo registro
 	{
-//Se ejecuta una sentencia SQL. Inserta (da de alta) el nuevo registro: insert.
+	//Se ejecuta una sentencia SQL. Inserta (da de alta) el nuevo registro: insert.
 		$sql="INSERT INTO empleados (correo, nombre_usuario, contrasena, nombre, apellido, edad, puesto) VALUES ('$email', '$username', '$password', '$name', '$surname', $age, '$job')";
 		//echo 'SQL: ' . $sql . '<br>';
 		$result = $mysqli->query($sql);	
 		//Se cierra la conexión
 		$mysqli->close();
-		echo "<div>Registro añadido correctamente...</div>";
+		echo "<div>Empleado añadido correctamente...</div>";
 		echo "<a href='home.php'>Ver resultado</a>";
 		//Se redirige a la página home: home.php
 		//header("Location:home.php");

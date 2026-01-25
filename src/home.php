@@ -64,39 +64,55 @@ $mysqli->close();
 
 /*
 A continuación indicamos distintos manera de leer cada fila de la tabla anterior: 
-mysqli_fetch_array()- Almacena una fila de la tabla anterior, $resultado, en un array asociativo, numérico o ambos
+mysqli_fetch_array()- Almacena una fila (o registro) de la tabla anterior, $resultado, en un array asociativo, numérico o ambos
 mysqli_fetch_assoc()-  Almacena una fila de la tabla anterior, , $resultado, SOLO en un array asociativo
 mysqli_fetch_row() - Almacena una fila de la tabla anterior, , $resultado, en un array numérico
 
 Veamos la diferencia entre un array numérico y asosiativo. Antes que nada supongamos que hemos leido el 1º registro de la tabla:
 id=1
+nombre_usuario=javier
+contrasena=usuario@1
+correo=javier@gmail.com
 apellido=Coloma
 nombre=Javier
 edad=25
 puesto=contable
+creacion=Fecha y hora de creacion
 
 ARRAYS NUMÉRICO (se accede por índice). Donde los índices se corresponde con la POSICIÓN de cada campo en la tabla de empleados: 0->id, 1->Apellido, 2->Nombre, 3->Edad y 4-> Puesto
-$fila[0] -> Contiene el contenido del campo id del empleado: 1
-$fila[1] -> Contiene el contenido del campo apellido: Coloma
-$fila[2] -> Contiene el contenido del campo apellido: Javier
-$fila[3] -> Contiene el contenido del campo edad: 25
-$fila[4] -> Contiene el el contenido del campo puesto: contable
+$fila[0] -> Contiene el contenido del campo id del empleado actual: 1
+$fila[1] -> Contiene el contenido del campo nombre_usuario: javier
+$fila[2] -> Contiene el contenido del campo contrasena: usuario
+$fila[3] -> Contiene el contenido del campo correo:javier@gmail.com
+$fila[4] -> Contiene el contenido del campo apellido: Coloma
+$fila[5] -> Contiene el contenido del campo nombre: Javier 
+$fila[6] -> Contiene el contenido del campo edad: 25
+$fila[7] -> Contiene el el contenido del campo puesto: contable
+$fila[8] -> Contiene el el contenido del campo creacion: Fecha y hora de creacion
 
 ARRAYS ASOCIATIVO (se acceder por nombre): Donde los índices (conocidos como claves) se corresponde con el NOMBRE de cada campo de la tabla de empleados: id, apellido, nombre, edad y puesto.
 $fila["id"] -> Contiene el contenido del campo id del empleado actual: 1
+$fila["nombre_usuario"] -> Contiene el contenido del campo nombre_usuario: javier
+$fila["contrasena"] -> Contiene el contenido del campo contrasena: usuario
+$fila["correo"] -> Contiene el contenido del campo correo:javier@gmail.com
 $fila["apellido"] -> Contiene el contenido del campo apellido: Coloma
 $fila["nombre"] -> Contiene el contenido del campo nombre: Javier 
 $fila["edad"] -> Contiene el contenido del campo edad: 25
 $fila["puesto"] -> Contiene el el contenido del campo puesto: contable
+$fila["creacion"] -> Contiene el el contenido del campo creacion: Fecha y hora de creacion
+
+
 */
 
-//Comprobamos si el nº de fila/registros es mayor que 0
+//Comprobamos si el nº de fila/registros es mayor que 0. La consulta genera un resultado válido
  if ($resultado->num_rows > 0) {
 
 /* A través de la estructura repetitiva "while" se recorre la "tabla" $resultados almacenando cada línea/registro en el array asociativo $fila. 
 Recuerda que $fila contiene el contenido de todos los campos del registro actual tal como explicamos anteriormente.
 El bucle finaliza cuando se llegue a la última línea (o registro) de la tabla $resultado. 
-A medida que avanza se va consturyendo cada fila de la tabla HTML con todos los campos del empleado, hasta completar todos los registros*/
+A medida que avanza se va construyendo cada fila de la tabla HTML con todos los campos del empleado, hasta completar todos los registros.
+De los nueves campos de la tabla empleados solo se muestran algunos en la tabla HTML: nombre_usuario, nombre, apellido, edad y puesto.
+*/
 
 	while($fila = $resultado->fetch_array()) {
 		echo "<tr>\n";
