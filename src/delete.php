@@ -38,7 +38,7 @@ $sql="DELETE FROM empleados WHERE id = $identificador";
 $result = $mysqli->query($sql);
 //Se cierra la conexión de base de datos previamente abierta
 $mysqli->close();
-echo "<div>Registro borrado correctamente...</div>";
+echo "<div>Empleado/a borrado correctamente...</div>";
 echo "<a href='home.php'>Ver resultado</a>";
 //Se redirige a la página principal: home.php
 //header("Location:home.php");
