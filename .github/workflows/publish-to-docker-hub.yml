@@ -6,8 +6,8 @@ on:
   
   # Ejecuta el flujo de trabajo al hacer un git push  
   # Comentamos el trigger, de esa manera No se ejecuta los trabajos
-  # push:
-  #    branches: ["main"]
+  push:
+     branches: ["main"]
   #  branches:
   #    - main  # Se ejecutará cuando haya un push en main
   pull_request:
