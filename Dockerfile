@@ -32,7 +32,7 @@ RUN apt-get update \
 # En producción es mejor copiar los archivos con la instrucción COPY para que el contenedor sea independiente del código fuente de la máquina host.
 
 # ATENCIÓN: En desarrollo la comentamos y cuando vayamos a producción con la aplicación definitiva la descomentamos
-# COPY /src /var/www/html
+COPY /src /var/www/html
 
 # Copia la configuración del sitio en el directorio de configuración de los sitios de apache (/etc/apache2/sites-available)
 
