@@ -18,7 +18,7 @@ include_once("config.php");
 <body>
 <div>
 	<header>
-		<h1>APLICACION CRUD PHP</h1>
+		<h1>APLICACION CRUD PHP 2º ASIR</h1>
 	</header>
 
 	<main>
